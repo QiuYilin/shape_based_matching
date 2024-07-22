@@ -19,14 +19,19 @@ ELSE()
 ENDIF()
 
 # SET(PLATFORM_COMPILE_FLAGS "-DMIPP_NO_INTRINSICS")  # close SIMD
-SET(COMMON_COMPILE_FLAGS "-fopenmp -Wall -Wno-sign-compare")
+if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    SET(COMMON_COMPILE_FLAGS "-fopenmp -Wall -Wno-sign-compare")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    SET(COMMON_COMPILE_FLAGS "/openmp /Wall /wd4018")
+endif()
 SET(CMAKE_CXX_FLAGS "${PLATFORM_COMPILE_FLAGS} ${COMMON_COMPILE_FLAGS} $ENV{CXXFLAGS}")
 SET(CMAKE_CXX_FLAGS_DEBUG "-O0 -g2 -ggdb")
 SET(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 
 # opencv
-set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /opt/ros/kinetic)
+#set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /opt/ros/kinetic)
+set(OpenCV_DIR "${VCPKG_INSTALLED_DIR}/x64-windows/share/opencv3")
 find_package(OpenCV 3 REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 

@@ -6,7 +6,7 @@
 using namespace std;
 using namespace cv;
 
-static std::string prefix = "/home/meiqua/shape_based_matching/test/";
+static std::string prefix = "C:/program_on_git/own/shape_based_matching/test/";
 
 class Timer
 {

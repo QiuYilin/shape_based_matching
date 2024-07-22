@@ -1,0 +1,36 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "vs+vcpkg",
+            "displayName": "vs+vcpkg",
+            "description": "Using compilers for Visual Studio 17 2022 (x64 architecture)",
+            "generator": "Visual Studio 17 2022",
+            "toolset": "host=x64",
+            "architecture": "x64",
+            "binaryDir": "build",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "C:/src/vcpkg/scripts/buildsystems/vcpkg.cmake",
+                "CMAKE_INSTALL_PREFIX": "build/install/${presetName}",
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "vs+vcpkg-debug",
+            "displayName": "Visual Studio Community 2022 Release - amd64 - Debug",
+            "configurePreset": "vs+vcpkg",
+            "configuration": "Debug",
+            "jobs": 8
+        },
+        {
+            "name": "vs+vcpkg-release",
+            "displayName": "Visual Studio Community 2022 Release - amd64 - Release",
+            "configurePreset": "vs+vcpkg",
+            "configuration": "Release",
+            "jobs": 8
+        }
+    ]
+}
